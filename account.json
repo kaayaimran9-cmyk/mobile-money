@@ -1,0 +1,14 @@
+{
+    "Customer_ 001 ": {
+        "account_number": "abc",
+        "account_name": "abc",
+        "pin": "123",
+        "account_balance": 0
+    },
+    "Customer_ 002 ": {
+        "account_number": "fdhg",
+        "account_name": "fhgd",
+        "pin": 3254,
+        "account_balance": 0
+    }
+}

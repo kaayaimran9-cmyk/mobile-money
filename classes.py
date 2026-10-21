@@ -1,0 +1,138 @@
+import json
+from functions import *
+
+
+class Customer:
+    def __init__ (self,customer_id,first_name,last_name,date_of_birth,gender,address):
+        self.customer_id = customer_id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.date_of_birth = date_of_birth
+        self.gender = gender
+        self.address = address
+
+
+class Account:
+    def __init__(self,account_number,account_name,pin):
+        self.account_number = account_number
+        self.account_name = account_name
+        self._balance:int = 0
+        self.pin:int = pin
+
+    
+    def set_balance(self):
+        return self._balance
+
+
+    
+        
+
+class Transaction(Account):
+
+    
+    def __init__(self,account_number,account_name,pin,type,amount,date,time):
+
+        super().__init__(account_number,account_name,pin)
+        self.type = type
+        self.__transaction_id = "none"
+        self.amount:int = amount
+        self.date = date
+        self.time = time
+        self.__status = "Successful" #amount
+
+    def change_status(self):
+
+        if self._balance <=0:
+            self.__status = "failed"
+            return f"{self.__status}"
+            
+        else:
+            return "no"
+
+
+    
+    def deposit(self):
+
+        if self.amount >0:
+
+            self._balance += self.amount
+
+            print(f"success, deposited ugx{self.amount}")
+
+            print()
+
+            return f"New balance is: ugx {self._balance}"
+            
+
+
+
+
+class Agent:
+    def __init__(self,agent_id,first_name,last_name,gender,address,contact):
+        self.agent_id = agent_id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.gender = gender
+        self.address = address
+        self.contact = contact
+
+class Money_transfer:
+    def __init__(self,amount,receiver_number):
+        #self.__transfer_id = ""
+        self.receiver_number = receiver_number
+        self.amount:int = amount
+        self.__status = "none"      #amount
+
+ 
+
+class Deposit:
+    def __init__(self,customer_id,account_number,amount):
+        self.customer_id = customer_id
+        self.account_number = account_number
+        self.amount:int = amount   
+        self.__status = "" #amount
+        
+        
+
+class Withdraw:
+    def __init__(self,customer_id,amount):
+        self.customer_id = customer_id
+        self.__withdraw_id = "none"
+        self.amount:int = amount
+        self.__agent_id = ""  #agent
+        self.__status = ""  #amount
+
+    
+
+
+    def set_withdraw_id(self):
+
+        self.__withdraw_id = f"withdrawn ugx {self.amount} "
+
+        return self.__withdraw_id
+       
+
+class Merchant:
+    def __init__(self,merchant_code,merchant_name,contact,business_name):
+        self.merchant_code = merchant_code
+        self.merchant_name = merchant_name
+        self.contact = contact
+        self.business_name = business_name
+
+class Payment:
+    def __init__(self,merchant_code,payment_method,amount):
+        self.merchant_code = merchant_code
+        self.__payment_id = "none"
+        self.payment_method = payment_method
+        self.amount:int = amount
+      
+        self.__status = "Success"  #amount
+
+    def set_payment_id(self):
+
+        self.__payment_id = f"Paid ugx {self.amount}"
+
+        return self.__payment_id
+
+
+     

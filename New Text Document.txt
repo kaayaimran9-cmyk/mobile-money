@@ -1,0 +1,151 @@
+# mobile money
+
+
+import json
+
+
+# Load data from json file
+def load_data():
+    with open("users.json", "r") as file:
+        return json.load(file)
+
+users = load_data()
+
+# Save data into json file
+def save_data():
+    with open("users.json", "w") as file:
+        json.dump(users, file, indent=4)
+
+
+def create_account():
+    
+    while True:
+
+        user = input("enter username: ")
+
+        account_balance = int(input("enter account balance: "))
+        pin = int(input("enter pin: "))
+        contact = input("enter contact: ")
+
+
+        data = {
+            "account_balance": account_balance,
+            "pin": pin,
+            "contact": contact
+        }
+
+        users[user] = data
+
+        save_data()
+        print()
+
+        more = input("are you still registering(y/n): ").lower().strip()
+
+        if more == "yes" or more == "y":
+            continue
+        elif more == "n" or more == "no":
+            return
+        else:
+            print("input was invalid")
+            break
+
+def login():
+
+    name = input("Enter your username: ")
+
+    if name in users:
+
+        
+        pin = int(input("Enter your PIN: "))
+
+        if pin == users[name]["pin"]:
+            print(f"\nWelcome {name}")
+
+            while True:
+                print("1.check balance\n2.deposit\n3.withdraw\n.4.send money\n5.exit")
+
+                choice = input("Choose an option: ")
+
+                # Check balanceg
+                if choice == "1":
+                    print(f"Your balance is: {users[name]['account_balance']} UGX")
+
+                # Deposit money
+                elif choice == "2":
+                    amount = int(input("Enter amount to deposit: "))
+
+                    users[name]["account_balance"] += amount
+                    save_data()
+
+                    print("Deposit successful")
+                    print(f"New balance: {users[name]['account_balance']} UGX")
+
+                # Withdraw money
+                elif choice == "3":
+                    amount = int(input("Enter amount to withdraw: "))
+
+                    if amount <= users[name]["account_balance"]:
+                        users[name]["account_balance"] -= amount
+                        save_data()
+
+                        print("Withdrawal successful")
+                        print(f"New balance: {users[name]['account_balance']} UGX")
+                    else:
+                        print("Insufficient balance")
+
+                # Send money
+                elif choice == "4":
+                    receiver = input("Enter receiver username: ")
+
+                    if receiver in users:
+                        amount = int(input("Enter amount to send: "))
+
+                        if amount <= users[name]["account_balance"]:
+                            users[name]["account_balance"] -= amount
+                            users[receiver]["account_balance"] += amount
+
+                            save_data()
+
+                            print(f"You have sent {amount} UGX to {receiver}")
+                            print(f"Your new balance is {users[name]['account_balance']} UGX")
+                        else:
+                            print("Insufficient balance")
+                    else:
+                        print("Receiver account not found")
+
+                # Exit
+                elif choice == "5":
+                    print("Thank you for using the system")
+                    break
+
+                else:
+                    print("Invalid option")
+
+        else:
+            print("Wrong PIN")
+
+    else:
+        print("User not found")
+
+
+#program starts
+
+print("===== MOBILE MONEY SYSTEM =====")
+print("1.create account")
+print("2.login")
+print("3.exit")
+
+
+option = input("enter option: ")
+
+if option == "1":
+    create_account()
+elif option == "2":
+    login()
+
+elif option == "3":
+    print("goodbye")
+    
+else:
+    print("input True")
+    
