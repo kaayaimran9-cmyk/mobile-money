@@ -292,38 +292,45 @@ elif option =="3":
                                 
                             elif type == "withdraw":
 
-                                amount = int(input("enter withdraw amount: "))
-                                
-                                if amount <= 0:
-                                
-                                    print()
-                                    print("invalid amount")
-                                    break
+                                #limit user withdraw
 
-                                pin = input("enter pin: ")
+                                if  not check_name == account_name:
 
-                                if pin == check_pin:
-
-                                    customer = Transaction(account_number,account_name,pin,type,amount)
-
-                                    customer.set_balance()
-                                    
-                                    customer.update_sender_balance(amount)
-                                    
-                                    
-                                    
-                                    change_status = customer.change_status(amount)
-                                    message = customer.set_transaction_id()
-
-                                    print(message)
-                                    is_running = False
-                                    break
-
+                                    print("you ca'nt withdraw from this account, perherps you should try using your details instead")
                                 else:
 
-                                    print()
-                                    print("wrong pin")
-                                    break
+                                    amount = int(input("enter withdraw amount: "))
+                                    
+                                    if amount <= 0:
+                                    
+                                        print()
+                                        print("invalid amount")
+                                        break
+
+                                    pin = input("enter pin: ")
+
+                                    if pin == check_pin:
+
+                                        customer = Transaction(account_number,account_name,pin,type,amount)
+
+                                        customer.set_balance()
+                                        
+                                        customer.update_sender_balance(amount)
+                                        
+                                        
+                                        
+                                        change_status = customer.change_status(amount)
+                                        message = customer.set_transaction_id()
+
+                                        print(message)
+                                        is_running = False
+                                        break
+
+                                    else:
+
+                                        print()
+                                        print("wrong pin")
+                                        break
    
 
                             elif type == "deposit":
