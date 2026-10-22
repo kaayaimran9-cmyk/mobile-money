@@ -179,72 +179,95 @@ elif option =="3":
             
                 #TRANSACTION
                 print("TRANSACTION")
+                
+
+                is_running = True
             
-                while True:
-            
-            
+                while is_running:
             
                     account_number = input("enter account number: ")
                     account_name = input("enter account name: ")
-                    type = input("enter type: ")
-                    amount = int(input("enter amount: "))
+
+                    #check if useraccount exists
+
+                    for key, value in account_data.items():
+                    
+                        if account_number == value["account_number"] and account_name == value["account_name"]:
+
+                            account_name = check_name
+
+                            
+
+                            type = input("enter type: ")
+                            amount = int(input("enter amount: "))
+                            
+                            
+                            
+                            date = input("enter date: ")
+                            time = input("enter time: ")
+                            pin = input("enter pin: ")
+                            
+                            
+                            customer = Transaction(account_number,account_name,pin,type,amount,date,time) 
+
+                            
+
+                            customer.set_balance()
+                            customer.change_status(amount)
+                            
+                            
+                            
+                            
+                            dictionary = {
+                            
+                                "account_name":account_name,
+                                "transaction_id":"send",
+                                "amount":amount,
+                                "date":date,
+                                "time":time,
+                                "status":customer.change_status(amount)
+                            
+                            
+                            
+                            }
+                            
+                            ID = f"Transaction_ {len(transaction_data) + 1:003} "
+                            
+                            transaction_data[ID] = dictionary
+                            
+                            update_transaction_data()
+                            
+                            print()
+                            
+                            if customer.change_status(amount) == "success":
+                            
+                                print("success")
+                            else:
+                            
+                                print("failed")
+                            
+                            
+                            more = input("Make new transaction ? (y/n): ").lower().strip()
+                            
+                            if more == "y" or more == "yes":
+                                continue
+                            
+                            else:
+
+                                is_running = False
+                                break
 
 
+                            
+                    else:
+                        print()
+                        print("user not recognised, retry")
 
-                    date = input("enter date: ")
-                    time = input("enter time: ")
-                    pin = input("enter pin: ")
 
-            
-                    customer = Transaction(account_number,account_name,pin,type,amount,date,time) 
-            
-                    customer.change_status(amount)
-            
+                    
                     
             
-                    dictionary = {
-            
-                        "transaction_id":"send",
-                        "amount":amount,
-                        "date":date,
-                        "time":time,
-                        "status":customer.change_status(amount)
-            
-            
-            
-                    }
-            
-                    ID = f"Customer_ {len(transaction_data) + 1:003} "
-            
-                    transaction_data[ID] = dictionary
-            
-                    update_transaction_data()
-            
-                    print()
-                    more = input("Are you still registering(y/n): ").lower().strip()
-            
-                    if more == "y" or more == "yes":
-                        continue
-
-                    else:
-
-                        break
-            
-                    # else:
-            
-            
-                    #     for key,value in transaction_data.items():
-            
-                    #         print()
-            
-                    #         print(key)
-                    #         print(f"AMOUNT: {value["amount"]}")
-                    #         print(f"TRANSACTION-TYPE: {value["transaction_id"]}")
-                    #         print(f"TIME: {value["time"]}")
-            
-            
-                    #     break  
-            
+                    
             
             
             elif option == "2":

@@ -23,7 +23,14 @@ class Account:
 
     
     def set_balance(self):
-        return self._balance
+
+        for key, value in account_data.items():
+        
+            if self.account_name == value["account_name"]:
+
+                self._balance = value["account_balance"]
+
+                return self._balance
 
 
     
@@ -40,24 +47,26 @@ class Transaction(Account):
         self.amount:int = amount
         self.date = date
         self.time = time
-        self.__status = "Successful" #amount
+        self.__status = "" #amount
+        
+
 
     def change_status(self,amount):
         
-        for key, value in account_data.items():
+        # for key, value in account_data.items():
 
-            if self.account_name == value["account_name"]:
+        #     if self.account_name == value["account_name"]:
 
-                if amount >= value["account_balance"]:
+        if amount >= self._balance: #value["account_balance"]:
 
-                    self.__status = "failed"
-                    
-                    return f"{self.__status}"
-                else:
+            self.__status = "failed"
+            
+            return f"{self.__status}"
+        else:
 
-                    self.__status = "Success"
-                                        
-                    return f"{self.__status}"
+            self.__status = "success"
+                                
+            return f"{self.__status}"
                     
                     
 
