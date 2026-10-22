@@ -47,17 +47,16 @@ class Transaction(Account):
         self.amount:int = amount
         self.date = date
         self.time = time
-        self.__status = "" #amount
+        self.__status = "" 
+        self._new_balance = 0
         
 
 
     def change_status(self,amount):
         
-        # for key, value in account_data.items():
+    
 
-        #     if self.account_name == value["account_name"]:
-
-        if amount >= self._balance: #value["account_balance"]:
+        if amount >= self._balance:
 
             self.__status = "failed"
             
@@ -65,11 +64,40 @@ class Transaction(Account):
         else:
 
             self.__status = "success"
-                                
-            return f"{self.__status}"
-                    
-                    
 
+                             
+            return f"{self.__status}"
+            
+
+    def update_sender_balance(self, amount):
+
+        #deduct money
+        self._balance -= amount
+
+        for key, value in account_data.items():
+        
+            if self.account_name == value["account_name"]:
+        
+                value["account_balance"] = self._balance
+                update_account_data()
+
+
+    def update_receiver_balance(self, amount):
+
+        for key, value in account_data.items():
+        
+            if self.account_number == value["account_number"]:
+        
+                value["account_balance"] += amount 
+                update_account_data()
+
+
+
+
+
+       
+
+    
                 
                 
 

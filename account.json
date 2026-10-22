@@ -3,7 +3,7 @@
         "account_number": "0750",
         "account_name": "abc",
         "pin": "123",
-        "account_balance": 3333333330
+        "account_balance": 54000
     },
     "Customer_ 002 ": {
         "account_number": "0751",
@@ -15,7 +15,7 @@
         "account_number": "0752",
         "account_name": "imran",
         "pin": "2322",
-        "account_balance": 0
+        "account_balance": 6000
     },
     "Customer_ 004 ": {
         "account_number": "0753",

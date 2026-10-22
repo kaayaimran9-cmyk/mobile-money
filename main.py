@@ -194,7 +194,7 @@ elif option =="3":
                     
                         if account_number == value["account_number"] and account_name == value["account_name"]:
 
-                            account_name = check_name
+                            #account_name = check_name
 
                             
 
@@ -208,12 +208,16 @@ elif option =="3":
                             pin = input("enter pin: ")
                             
                             
-                            customer = Transaction(account_number,account_name,pin,type,amount,date,time) 
+                            customer = Transaction(account_number,check_name,pin,type,amount,date,time) 
 
                             
 
                             customer.set_balance()
                             customer.change_status(amount)
+                            customer.update_sender_balance(amount)
+
+                            
+                            customer.update_receiver_balance(amount)
                             
                             
                             
