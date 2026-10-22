@@ -2,6 +2,8 @@ import json
 from functions import *
 
 
+
+
 class Customer:
     def __init__ (self,customer_id,first_name,last_name,date_of_birth,gender,address):
         self.customer_id = customer_id
@@ -40,29 +42,31 @@ class Transaction(Account):
         self.time = time
         self.__status = "Successful" #amount
 
-    def change_status(self):
+    def change_status(self,amount):
+        
+        for key, value in account_data.items():
 
-        if self._balance <=0:
-            self.__status = "failed"
-            return f"{self.__status}"
-            
-        else:
-            return "no"
+            if self.account_name == value["account_name"]:
+
+                if amount >= value["account_balance"]:
+
+                    self.__status = "failed"
+                    
+                    return f"{self.__status}"
+                else:
+
+                    self.__status = "Success"
+                                        
+                    return f"{self.__status}"
+                    
+                    
+
+                
+                
 
 
     
-    def deposit(self):
-
-        if self.amount >0:
-
-            self._balance += self.amount
-
-            print(f"success, deposited ugx{self.amount}")
-
-            print()
-
-            return f"New balance is: ugx {self._balance}"
-            
+    
 
 
 

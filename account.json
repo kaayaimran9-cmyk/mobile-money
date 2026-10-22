@@ -3,12 +3,24 @@
         "account_number": "abc",
         "account_name": "abc",
         "pin": "123",
-        "account_balance": 0
+        "account_balance": 30000
     },
     "Customer_ 002 ": {
-        "account_number": "fdhg",
+        "account_number": "0751",
         "account_name": "fhgd",
-        "pin": 3254,
+        "pin": "3254",
+        "account_balance": 0
+    },
+    "Customer_ 003 ": {
+        "account_number": "0752",
+        "account_name": "imran",
+        "pin": 2322,
+        "account_balance": 0
+    },
+    "Customer_ 004 ": {
+        "account_number": "0753",
+        "account_name": "djfh",
+        "pin": 132,
         "account_balance": 0
     }
 }

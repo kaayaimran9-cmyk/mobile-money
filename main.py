@@ -14,8 +14,9 @@ print()
 print("Menu:")
 print()
 print("1.Register customer")
-print("2.Login")
-print("3.exit")
+print("2.Register account")
+print("3.Login")
+print("4.exit")
 
 
 print()
@@ -86,8 +87,60 @@ if option == "1":
                 break
 
 
+elif option == "2":
+
+    #ACCOUNT
+    print("ACCOUNT")
     
-elif option =="2":
+    while True:
+    
+        account_name = input("enter account-name: ")
+        account_number = input("enter account number: ")
+        pin = int(input("enter pin: "))
+    
+    
+        customer = Account(account_number,account_name,pin)
+    
+        customer.set_balance()
+    
+    
+        dictionary = {
+            "account_number": account_number,
+            "account_name": account_name,
+            "pin": pin,
+            "account_balance":customer.set_balance()
+        }
+    
+        ID = f"Customer_ {len(account_data) + 1:003} "
+    
+        account_data[ID] = dictionary
+    
+        update_account_data()
+    
+        print()
+        more = input("Are you still registering(y/n): ").lower().strip()
+    
+        if more == "y" or more == "yes":
+            continue
+        else:
+            break
+    
+        # else:
+    
+    
+        #     for key,value in account_data.items():
+    
+        #         print()
+    
+        #         print(key)
+        #         print(f"ACCOUNT-NAME: {value["account_name"]}")
+        #         print(f"ACCOUNT-NUMBER: {value["account_number"]}")
+    
+    
+        #     break
+
+    
+elif option =="3":
 
     check_name = input("enter account-name to continue: ")
     check_pin = input("enter pin to continue: ")
@@ -102,80 +155,27 @@ elif option =="2":
 
             print(f"CURRENT USER: {check_name.upper()}")
 
-
-            print("1.Register account")
-            print("2.Make transactions")
-            print("3.Register an agent")
             print()
-            print("4.Transfer money")
-            print("5.Deposit")
-            print("6.Withdraw")
-            print("7.Merchant")
-            print("8.Payment")
-            print("9.exit")
+
+
+            
+            print("1.Make transactions")
+            print("2.Register an agent")
+            print()
+            print("3.Transfer money")
+            print("4.Deposit")
+            print("5.Withdraw")
+            print("6.Merchant")
+            print("7.Payment")
+            print("8.exit")
             
             print()
             
             option = input("enter option: ").strip()
             
-            
-            
-            
-            
+
             
             if option == "1":
-            
-            
-                #ACCOUNT
-                print("ACCOUNT")
-            
-                while True:
-            
-                    account_name = input("enter account-name: ")
-                    account_number = input("enter account number: ")
-                    pin = int(input("enter pin: "))
-            
-            
-                    customer = Account(account_number,account_name,pin)
-            
-                    customer.set_balance()
-            
-            
-                    dictionary = {
-                        "account_number": account_number,
-                        "account_name": account_name,
-                        "pin": pin,
-                        "account_balance":customer.set_balance()
-                    }
-            
-                    ID = f"Customer_ {len(account_data) + 1:003} "
-            
-                    account_data[ID] = dictionary
-            
-                    update_account_data()
-            
-                    print()
-                    more = input("Are you still registering(y/n): ").lower().strip()
-            
-                    if more == "y" or more == "yes":
-                        continue
-            
-                    else:
-            
-            
-                        for key,value in account_data.items():
-            
-                            print()
-            
-                            print(key)
-                            print(f"ACCOUNT-NAME: {value["account_name"]}")
-                            print(f"ACCOUNT-NUMBER: {value["account_number"]}")
-            
-            
-                        break            
-            
-            
-            elif option == "2":
             
                 #TRANSACTION
                 print("TRANSACTION")
@@ -186,18 +186,21 @@ elif option =="2":
             
                     account_number = input("enter account number: ")
                     account_name = input("enter account name: ")
-                    pin = input("enter pin: ")
                     type = input("enter type: ")
                     amount = int(input("enter amount: "))
+
+
+
                     date = input("enter date: ")
                     time = input("enter time: ")
-            
+                    pin = input("enter pin: ")
+
             
                     customer = Transaction(account_number,account_name,pin,type,amount,date,time) 
             
-                    check = customer.change_status()
+                    customer.change_status(amount)
             
-                    customer.deposit()
+                    
             
                     dictionary = {
             
@@ -205,7 +208,7 @@ elif option =="2":
                         "amount":amount,
                         "date":date,
                         "time":time,
-                        "status":check
+                        "status":customer.change_status(amount)
             
             
             
@@ -222,25 +225,29 @@ elif option =="2":
             
                     if more == "y" or more == "yes":
                         continue
-            
+
                     else:
+
+                        break
+            
+                    # else:
             
             
-                        for key,value in transaction_data.items():
+                    #     for key,value in transaction_data.items():
             
-                            print()
+                    #         print()
             
-                            print(key)
-                            print(f"AMOUNT: {value["amount"]}")
-                            print(f"TRANSACTION-TYPE: {value["transaction_id"]}")
-                            print(f"TIME: {value["time"]}")
-            
-            
-                        break  
+                    #         print(key)
+                    #         print(f"AMOUNT: {value["amount"]}")
+                    #         print(f"TRANSACTION-TYPE: {value["transaction_id"]}")
+                    #         print(f"TIME: {value["time"]}")
             
             
+                    #     break  
             
-            elif option == "3":
+            
+            
+            elif option == "2":
             
                 #AGENT
                 print("AGENT")
@@ -275,22 +282,25 @@ elif option =="2":
             
                     if more == "y" or more == "yes":
                         continue
-            
+
                     else:
-            
-                        for key,value in agent_data.items():
-            
-                            print()
-            
-                            print(key)
-                            print(f"AGENT-ID: {value["agent_id"]}")
-                            print(f"CONTACT: {value["contact"]}")
-            
-            
                         break
             
+                    # else:
             
-            elif option == "4":
+                    #     for key,value in agent_data.items():
+            
+                    #         print()
+            
+                    #         print(key)
+                    #         print(f"AGENT-ID: {value["agent_id"]}")
+                    #         print(f"CONTACT: {value["contact"]}")
+            
+            
+                    #     break
+            
+            
+            elif option == "3":
             
                 #MONEY TRANSFER
                 print("TRANSFER")
@@ -319,21 +329,24 @@ elif option =="2":
             
                     if more == "y" or more == "yes":
                         continue
-            
+
                     else:
-            
-                        for key,value in Money_transfer_data.items():
-            
-                            print()
-            
-                            print(key)
-                            print(f"AMOUNT: {value["amount"]}")
-                            print(f"RECEIVER: {value["receiver"]}")
-            
                         break
             
+                    # else:
             
-            elif option == "5":
+                    #     for key,value in Money_transfer_data.items():
+            
+                    #         print()
+            
+                    #         print(key)
+                    #         print(f"AMOUNT: {value["amount"]}")
+                    #         print(f"RECEIVER: {value["receiver"]}")
+            
+                    #     break
+            
+            
+            elif option == "4":
             
                 #DEPOSIT
                 print("DEPOSIT")
@@ -367,24 +380,27 @@ elif option =="2":
             
                     if more == "y" or more == "yes":
                         continue
-            
+
                     else:
-            
-                        for key,value in deposit_data.items():
-            
-                            print()
-            
-                            print(key)
-                            print(f"ACCOUNT-ID: {value["account_id"]}")
-                            print(f"AMOUNT: {value["amount"]}")
-            
-            
-            
                         break
             
+                    # else:
+            
+                    #     for key,value in deposit_data.items():
+            
+                    #         print()
+            
+                    #         print(key)
+                    #         print(f"ACCOUNT-ID: {value["account_id"]}")
+                    #         print(f"AMOUNT: {value["amount"]}")
             
             
-            elif option == "6":
+            
+                    #     break
+            
+            
+            
+            elif option == "5":
             
                 #WIHDRAW
                 print("WITHDRAW")
@@ -417,22 +433,25 @@ elif option =="2":
             
                     if more == "y" or more == "yes":
                         continue
-            
+
                     else:
-            
-                        for key,value in withdraw_data.items():
-            
-                            print()
-            
-                            print(key)
-                            print(f"CUSTOMER-ID: {value["customer_id"]}")
-                            print(f"AMOUNT: {value["amount"]}")
-                            print(f"WITHDRAW: {value["withdraw_id"]}")
-            
                         break
             
+                    # else:
             
-            elif option == "7":
+                    #     for key,value in withdraw_data.items():
+            
+                    #         print()
+            
+                    #         print(key)
+                    #         print(f"CUSTOMER-ID: {value["customer_id"]}")
+                    #         print(f"AMOUNT: {value["amount"]}")
+                    #         print(f"WITHDRAW: {value["withdraw_id"]}")
+            
+                    #     break
+            
+            
+            elif option == "6":
                 #MERCHANT
             
                 print("MERCHANT")
@@ -468,22 +487,25 @@ elif option =="2":
             
                     if more == "y" or more == "yes":
                         continue
-            
+
                     else:
-            
-                        for key,value in merchant_data.items():
-            
-                            print()
-            
-                            print(key)
-                            print(f"MERCHANT-NAME: {value["merchant_name"]}")
-                            print(f"BUSINESS-NAME: {value["business_name"]}")
-                            print(f"MERCHANT-CODE: {value["merchant_code"]}")
-            
-            
                         break
             
-            elif option == "8":
+                    # else:
+            
+                    #     for key,value in merchant_data.items():
+            
+                    #         print()
+            
+                    #         print(key)
+                    #         print(f"MERCHANT-NAME: {value["merchant_name"]}")
+                    #         print(f"BUSINESS-NAME: {value["business_name"]}")
+                    #         print(f"MERCHANT-CODE: {value["merchant_code"]}")
+            
+            
+                    #     break
+            
+            elif option == "7":
                 #payment
                 print("PAYMENT")
                 while True:
@@ -520,23 +542,26 @@ elif option =="2":
             
                     if more == "y" or more == "yes":
                         continue
-            
+
                     else:
-            
-                        for key,value in payment_data.items():
-            
-                            print()
-            
-                            print(key)
-                            print(f"MERCHANT CODE: {value["merchant_code"]}")
-                            print(f"PAYMENT METHOD: {value["payment_method"]}")
-                            print(f"PAYMENT_ID: {value["payment_id"]}")
-                            print(f"AMOUNT: {value["amount"]}")
-            
-            
                         break
             
-            elif option == "9":
+                    # else:
+            
+                    #     for key,value in payment_data.items():
+            
+                    #         print()
+            
+                    #         print(key)
+                    #         print(f"MERCHANT CODE: {value["merchant_code"]}")
+                    #         print(f"PAYMENT METHOD: {value["payment_method"]}")
+                    #         print(f"PAYMENT_ID: {value["payment_id"]}")
+                    #         print(f"AMOUNT: {value["amount"]}")
+            
+            
+                    #     break
+            
+            elif option == "8":
                 print("bye")
                 pass
             
@@ -555,7 +580,7 @@ elif option =="2":
         
 
 
-elif option == "3":
+elif option == "4":
     
 
     print("bye")
