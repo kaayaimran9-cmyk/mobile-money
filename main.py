@@ -148,6 +148,13 @@ elif option =="3":
 
     for key, value in account_data.items():
 
+        #get contact
+        contact = value["account_number"]
+
+        #get account balance
+
+        account_balance = value["account_balance"]
+
         if check_name == value["account_name"] and check_pin == value["pin"]:
 
             print()
@@ -185,81 +192,171 @@ elif option =="3":
             
                 while is_running:
             
-                    account_number = input("enter account number: ")
-                    account_name = input("enter account name: ")
+                    account_number = input("enter  account number: ")
+                    account_name = input("enter  account name: ")
+
+
 
                     #check if useraccount exists
-
                     for key, value in account_data.items():
-                    
+
                         if account_number == value["account_number"] and account_name == value["account_name"]:
 
-                            #account_name = check_name
+                            
+                            type = input("enter transaction type (send/withdraw/deposit): ")
 
-                            
+                            if type == "send":
 
-                            type = input("enter type: ")
-                            amount = int(input("enter amount: "))
-                            
-                            
-                            
-                            date = input("enter date: ")
-                            time = input("enter time: ")
-                            pin = input("enter pin: ")
-                            
-                            
-                            customer = Transaction(account_number,check_name,pin,type,amount,date,time) 
+                                #user should not send to himself
 
-                            
+                                if account_number == contact:
 
-                            customer.set_balance()
-                            customer.change_status(amount)
-                            customer.update_sender_balance(amount)
+                                    print()
+                                    print("can't send money to yourself using your number...")
 
-                            
-                            customer.update_receiver_balance(amount)
-                            
-                            
-                            
-                            
-                            dictionary = {
-                            
-                                "account_name":account_name,
-                                "transaction_id":"send",
-                                "amount":amount,
-                                "date":date,
-                                "time":time,
-                                "status":customer.change_status(amount)
-                            
-                            
-                            
-                            }
-                            
-                            ID = f"Transaction_ {len(transaction_data) + 1:003} "
-                            
-                            transaction_data[ID] = dictionary
-                            
-                            update_transaction_data()
-                            
-                            print()
-                            
-                            if customer.change_status(amount) == "success":
-                            
-                                print("success")
-                            else:
-                            
-                                print("failed")
-                            
-                            
-                            more = input("Make new transaction ? (y/n): ").lower().strip()
-                            
-                            if more == "y" or more == "yes":
-                                continue
-                            
-                            else:
+                                    break
 
-                                is_running = False
+
+                                amount = int(input("enter amount: "))
+
+                                if amount <= 0:
+
+                                    print()
+                                    print("invalid amount")
+                                    break
+
+
+                                pin = input("enter pin: ")
+
+                                if pin == check_pin:
+
+
+                                
+                                
+                                    customer = Transaction(account_number,check_name,pin,type,amount) 
+                                    
+                                    
+                                    
+                                    customer.set_balance()
+                                    
+                                    customer.update_sender_balance(amount)
+                                    
+                                    
+                                    customer.update_receiver_balance(amount)
+                                    change_status = customer.change_status(amount)
+                                    message = customer.set_transaction_id()
+                                    
+                                    
+                                    
+                                    
+                                    dictionary = {
+                                    
+                                        "account_name":account_name,
+                                        "transaction_id":message,
+                                        "amount":amount,
+                                        "transaction_status": change_status
+                                    
+                                    
+                                    
+                                    
+                                    }
+                                    
+                                    ID = f"Transaction_ {len(transaction_data) + 1:003} "
+                                    
+                                    transaction_data[ID] = dictionary
+                                    
+                                    update_transaction_data()
+                                    
+                                    print()
+                                    
+                                    print(message)
+                                    
+                                    
+                                    more = input("Make new transaction ? (y/n): ").lower().strip()
+                                    
+                                    if more == "y" or more == "yes":
+                                        continue
+                                    
+                                    else:
+                                    
+                                        is_running = False
+                                        break
+
+                                else:
+
+                                    print()
+                                    print("failed due to wrong pin")
+
+
+
+                                
+                            elif type == "withdraw":
+
+                                amount = int(input("enter withdraw amount: "))
+                                
+                                if amount <= 0:
+                                
+                                    print()
+                                    print("invalid amount")
+                                    break
+
+                                pin = input("enter pin: ")
+
+                                if pin == check_pin:
+
+                                    customer = Transaction(account_number,account_name,pin,type,amount)
+
+                                    customer.set_balance()
+                                    
+                                    customer.update_sender_balance(amount)
+                                    
+                                    
+                                    
+                                    change_status = customer.change_status(amount)
+                                    message = customer.set_transaction_id()
+
+                                    print(message)
+                                    is_running = False
+                                    break
+
+                                else:
+
+                                    print()
+                                    print("wrong pin")
+                                    break
+   
+
+                            elif type == "deposit":
+
+                                amount = int(input("enter deposit amount: "))
+                                
+                                if amount <= 0:
+                                
+                                    print()
+                                    print("invalid amount")
+                                    break
+
+
+                                customer = Transaction(account_number,account_name,"0",type,amount)
+
+                                customer.set_balance()
+                                
+                                customer.update_sender_balance(amount)
+                                
+                                
+                                
+                                change_status = customer.change_status(amount)
+                                message = customer.set_transaction_id()
+
+                                print(message)
+                                is_running =False
                                 break
+                                
+                            else:
+
+                                print("invalid attempt")
+                                
+                            
 
 
                             

@@ -1,146 +1,64 @@
 {
     "Transaction_ 001 ": {
         "account_name": "imran",
-        "transaction_id": "send",
-        "amount": 2000,
-        "date": "212",
-        "time": "12",
-        "status": "failed"
+        "transaction_id": "success, sent ugx 3000 at 2026-10-22 13:44:32.632073",
+        "amount": 3000,
+        "date": "dsf",
+        "time": "df",
+        "transaction_status": "success"
     },
     "Transaction_ 002 ": {
         "account_name": "imran",
-        "transaction_id": "send",
-        "amount": 1000,
-        "date": "fg",
-        "time": "df",
-        "status": "failed"
+        "transaction_id": "success, sent ugx 9000 at 2026-10-22 13:50:57.605424",
+        "amount": 9000,
+        "transaction_status": "success"
     },
     "Transaction_ 003 ": {
-        "account_name": "imran",
-        "transaction_id": "send",
+        "account_name": "abc",
+        "transaction_id": "success, sent ugx 1000 at 2026-10-22 13:58:11.024178",
         "amount": 1000,
-        "date": "s",
-        "time": "s",
-        "status": "failed"
+        "transaction_status": "success"
     },
     "Transaction_ 004 ": {
-        "account_name": "imran",
-        "transaction_id": "send",
-        "amount": 1200,
-        "date": "sd",
-        "time": "ds",
-        "status": "failed"
+        "account_name": "abc",
+        "transaction_id": "success, sent ugx 1000 at 2026-10-22 13:58:11.024178",
+        "amount": 1000,
+        "transaction_status": "success"
     },
     "Transaction_ 005 ": {
-        "account_name": "abc",
-        "transaction_id": "send",
-        "amount": 1000,
-        "date": "gh",
-        "time": "ujh",
-        "status": "success"
+        "account_name": "djfh",
+        "transaction_id": "transaction of ugx 300000 failed at 2026-10-22 13:59:30.628525 ",
+        "amount": 300000,
+        "transaction_status": "failed"
     },
     "Transaction_ 006 ": {
-        "account_name": "abc",
-        "transaction_id": "send",
+        "account_name": "djfh",
+        "transaction_id": "transaction of ugx 1000 failed at 2026-10-22 14:00:32.669324 ",
         "amount": 1000,
-        "date": "ds",
-        "time": "dsf",
-        "status": "success"
+        "transaction_status": "failed"
     },
     "Transaction_ 007 ": {
-        "account_name": "abc",
-        "transaction_id": "send",
+        "account_name": "imran",
+        "transaction_id": "success, sent ugx 2000 at 2026-10-22 14:09:11.742168",
         "amount": 2000,
-        "date": "df",
-        "time": "sd",
-        "status": "success"
+        "transaction_status": "success"
     },
     "Transaction_ 008 ": {
-        "account_name": "abc",
-        "transaction_id": "send",
-        "amount": 2000,
-        "date": "gfh",
-        "time": "gf",
-        "status": "success"
+        "account_name": "imran",
+        "transaction_id": "transaction of ugx 200000 failed at 2026-10-22 14:12:52.283388 ",
+        "amount": 200000,
+        "transaction_status": "failed"
     },
     "Transaction_ 009 ": {
         "account_name": "abc",
-        "transaction_id": "send",
-        "amount": 3000,
-        "date": "gdf",
-        "time": "fdg",
-        "status": "success"
+        "transaction_id": "success, sent ugx 2000 at 2026-10-22 14:33:15.831102",
+        "amount": 2000,
+        "transaction_status": "success"
     },
     "Transaction_ 010 ": {
         "account_name": "abc",
-        "transaction_id": "send",
-        "amount": 4000,
-        "date": "df",
-        "time": "ds",
-        "status": "success"
-    },
-    "Transaction_ 011 ": {
-        "account_name": "abc",
-        "transaction_id": "send",
-        "amount": 6000,
-        "date": "sdf",
-        "time": "sdf",
-        "status": "success"
-    },
-    "Transaction_ 012 ": {
-        "account_name": "abc",
-        "transaction_id": "send",
+        "transaction_id": "success, sent ugx 2000 at 2026-10-22 14:33:15.831102",
         "amount": 2000,
-        "date": "dfg",
-        "time": "fdg",
-        "status": "success"
-    },
-    "Transaction_ 013 ": {
-        "account_name": "abc",
-        "transaction_id": "send",
-        "amount": 6000,
-        "date": "df",
-        "time": "sd",
-        "status": "success"
-    },
-    "Transaction_ 014 ": {
-        "account_name": "abc",
-        "transaction_id": "send",
-        "amount": 6000,
-        "date": "hjg",
-        "time": "jyhfg",
-        "status": "success"
-    },
-    "Transaction_ 015 ": {
-        "account_name": "abc",
-        "transaction_id": "send",
-        "amount": 5000,
-        "date": "hg",
-        "time": "hg",
-        "status": "success"
-    },
-    "Transaction_ 016 ": {
-        "account_name": "imran",
-        "transaction_id": "send",
-        "amount": 3000,
-        "date": "sdf",
-        "time": "f",
-        "status": "success"
-    },
-    "Transaction_ 017 ": {
-        "account_name": "imran",
-        "transaction_id": "send",
-        "amount": 6000,
-        "date": "df",
-        "time": "fdg",
-        "status": "success"
-    },
-    "Transaction_ 018 ": {
-        "account_name": "imran",
-        "transaction_id": "send",
-        "amount": 6000,
-        "date": "df",
-        "time": "sdf",
-        "status": "success"
+        "transaction_status": "success"
     }
 }

@@ -1,6 +1,8 @@
 import json
+import datetime
 from functions import *
 
+now = datetime.datetime.now()
 
 
 
@@ -39,14 +41,13 @@ class Account:
 class Transaction(Account):
 
     
-    def __init__(self,account_number,account_name,pin,type,amount,date,time):
+    def __init__(self,account_number,account_name,pin,type,amount):
 
         super().__init__(account_number,account_name,pin)
         self.type = type
         self.__transaction_id = "none"
         self.amount:int = amount
-        self.date = date
-        self.time = time
+
         self.__status = "" 
         self._new_balance = 0
         
@@ -72,24 +73,80 @@ class Transaction(Account):
     def update_sender_balance(self, amount):
 
         #deduct money
-        self._balance -= amount
 
-        for key, value in account_data.items():
-        
-            if self.account_name == value["account_name"]:
-        
-                value["account_balance"] = self._balance
-                update_account_data()
+
+        if self.type == "send":
+            if self._balance >= amount:
+
+                self._balance -= amount
+                for key, value in account_data.items():
+                
+                    if self.account_name == value["account_name"]:
+                
+                        value["account_balance"] = self._balance
+                        update_account_data()
+
+
+        elif self.type == "withdraw":
+
+            if self._balance >= amount:
+            
+                self._balance -= amount
+                for key, value in account_data.items():
+            
+                    if self.account_name == value["account_name"]:
+            
+                        value["account_balance"] = self._balance
+                        update_account_data()
+
+        elif self.type == "deposit":
+
+            self._balance += amount
+            for key, value in account_data.items():
+            
+                if self.account_name == value["account_name"]:
+            
+                    value["account_balance"] = self._balance
+                    update_account_data()
 
 
     def update_receiver_balance(self, amount):
 
-        for key, value in account_data.items():
         
-            if self.account_number == value["account_number"]:
-        
-                value["account_balance"] += amount 
-                update_account_data()
+        if self._balance >= amount:
+            for key, value in account_data.items():
+            
+                if self.account_number == value["account_number"]:
+            
+                    value["account_balance"] += amount 
+                    update_account_data()
+
+    def set_transaction_id(self):
+
+        if self.type == "send":
+
+
+            if self.__status == "success":
+
+                return f"success, sent ugx {self.amount} at {now}"
+            else:
+                return f"transaction of ugx {self.amount} failed at {now} "
+
+
+        elif self.type ==  "withdraw":
+
+
+            if self.__status == "success":
+            
+                return f"success, withdrawn ugx {self.amount} at {now}"
+            else:
+                return f"withdraw of ugx {self.amount} failed at {now} due to insufficient balance "
+
+
+        elif self.type ==  "deposit":
+
+            return f"success, deposited ugx {self.amount} at {now}"
+           
 
 
 
