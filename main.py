@@ -15,8 +15,9 @@ print("Menu:")
 print()
 print("1.Register customer")
 print("2.Register account")
-print("3.Login")
-print("4.exit")
+print("3.Register agent")
+print("4.Login")
+print("5.exit")
 
 
 print()
@@ -82,9 +83,11 @@ if option == "1":
                     print(key)
                     print(f"CUSTOMER ID: {value["customer_id"]}")
                     print(f"ADDRESS: {value["address"]}")
+                    print(f"FIRST-NAME: {value["first_name"]}")
+                    print(f"LAST-NAME: {value["last_name"]}")
     
     
-                break
+                    break
 
 
 elif option == "2":
@@ -96,19 +99,19 @@ elif option == "2":
     
         account_name = input("enter account-name: ")
         account_number = input("enter account number: ")
-        pin = int(input("enter pin: "))
+        pin = input("enter pin: ")
     
     
         customer = Account(account_number,account_name,pin)
     
-        customer.set_balance()
+        #customer.set_balance()
     
     
         dictionary = {
             "account_number": account_number,
             "account_name": account_name,
             "pin": pin,
-            "account_balance":customer.set_balance()
+            "account_balance": 0
         }
     
         ID = f"Customer_ {len(account_data) + 1:003} "
@@ -123,24 +126,79 @@ elif option == "2":
         if more == "y" or more == "yes":
             continue
         else:
+            
+    
+        
+    
+    
+            for key,value in account_data.items():
+    
+                print()
+    
+                print(key)
+                print(f"ACCOUNT-NAME: {value["account_name"]}")
+                print(f"ACCOUNT-NUMBER: {value["account_number"]}")
+    
+    
+            break
+
+
+elif option == "3":
+
+    #AGENT
+    print("AGENT")
+    
+    while True:
+        agent_id = input("enter your agent-id: ")   
+        first_name = input("enter first-name: ")
+        last_name = input("enter last-name: ")
+        gender = input("enter gender: ")    
+        address = input("enter addresss: ")
+        contact = input("privide your contact: ")
+    
+        agent = Agent(agent_id,first_name,last_name,gender,address,contact)
+    
+        dictionary = {
+            "agent_id": agent_id,
+            "first_name": first_name,
+            "last_name": last_name,
+            "gender": gender,
+            "address": address,
+            "contact": contact
+        }
+    
+        ID = f"Agent_ {len(agent_data) + 1:003} "
+    
+        agent_data[ID] = dictionary
+    
+        update_agent_data()
+    
+        print()
+        more = input("Are you still registering(y/n): ").lower().strip()
+    
+        if more == "y" or more == "yes":
+            continue
+    
+        else:
             break
     
         # else:
     
-    
-        #     for key,value in account_data.items():
+        #     for key,value in agent_data.items():
     
         #         print()
     
         #         print(key)
-        #         print(f"ACCOUNT-NAME: {value["account_name"]}")
-        #         print(f"ACCOUNT-NUMBER: {value["account_number"]}")
+        #         print(f"AGENT-ID: {value["agent_id"]}")
+        #         print(f"CONTACT: {value["contact"]}")
     
     
         #     break
 
-    
-elif option =="3":
+
+
+
+elif option =="4":
 
     check_name = input("enter account-name to continue: ")
     check_pin = input("enter pin to continue: ")
@@ -167,14 +225,12 @@ elif option =="3":
 
             
             print("1.Make transactions")
-            print("2.Register an agent")
-            print()
-            print("3.Transfer money")
-            print("4.Deposit")
-            print("5.Withdraw")
-            print("6.Merchant")
-            print("7.Payment")
-            print("8.exit")
+            print("2.Transfer money")
+            print("3.Deposit")
+            print("4.Withdraw")
+            print("5.Merchant")
+            print("6.Payment")
+            print("7.exit")
             
             print()
             
@@ -217,7 +273,7 @@ elif option =="3":
                                     break
 
 
-                                amount = int(input("enter amount: "))
+                                amount = int(input("enter amount: "))        #######HERERERERERERE
 
                                 if amount <= 0:
 
@@ -370,68 +426,9 @@ elif option =="3":
                     else:
                         print()
                         print("user not recognised, retry")
-
-
+ 
                     
-                    
-            
-                    
-            
-            
             elif option == "2":
-            
-                #AGENT
-                print("AGENT")
-            
-                while True:
-                    agent_id = input("enter your agent-id: ")   
-                    first_name = input("enter first-name: ")
-                    last_name = input("enter last-name: ")
-                    gender = input("enter gender: ")    
-                    address = input("enter addresss: ")
-                    contact = input("privide your contact: ")
-            
-                    agent = Agent(agent_id,first_name,last_name,gender,address,contact)
-            
-                    dictionary = {
-                        "agent_id": agent_id,
-                        "first_name": first_name,
-                        "last_name": last_name,
-                        "gender": gender,
-                        "address": address,
-                        "contact": contact
-                    }
-            
-                    ID = f"Agent_ {len(agent_data) + 1:003} "
-            
-                    agent_data[ID] = dictionary
-            
-                    update_agent_data()
-            
-                    print()
-                    more = input("Are you still registering(y/n): ").lower().strip()
-            
-                    if more == "y" or more == "yes":
-                        continue
-
-                    else:
-                        break
-            
-                    # else:
-            
-                    #     for key,value in agent_data.items():
-            
-                    #         print()
-            
-                    #         print(key)
-                    #         print(f"AGENT-ID: {value["agent_id"]}")
-                    #         print(f"CONTACT: {value["contact"]}")
-            
-            
-                    #     break
-            
-            
-            elif option == "3":
             
                 #MONEY TRANSFER
                 print("TRANSFER")
@@ -441,8 +438,10 @@ elif option =="3":
                     amount = int(input("enter amount: "))
             
                     receiver_number = input("enter receiving number: ")
+
+                    pin = input("enter pin: ")
             
-                    customer = Money_transfer(amount,receiver_number)
+                    customer = Money_transfer(amount,receiver_number,pin)
             
                     dictionary = {
                         "amount":amount,
@@ -477,7 +476,7 @@ elif option =="3":
                     #     break
             
             
-            elif option == "4":
+            elif option == "3":
             
                 #DEPOSIT
                 print("DEPOSIT")
@@ -531,7 +530,7 @@ elif option =="3":
             
             
             
-            elif option == "5":
+            elif option == "4":
             
                 #WIHDRAW
                 print("WITHDRAW")
@@ -582,7 +581,7 @@ elif option =="3":
                     #     break
             
             
-            elif option == "6":
+            elif option == "5":
                 #MERCHANT
             
                 print("MERCHANT")
@@ -636,7 +635,7 @@ elif option =="3":
             
                     #     break
             
-            elif option == "7":
+            elif option == "6":
                 #payment
                 print("PAYMENT")
                 while True:
@@ -692,7 +691,7 @@ elif option =="3":
             
                     #     break
             
-            elif option == "8":
+            elif option == "7":
                 print("bye")
                 pass
             
@@ -711,7 +710,7 @@ elif option =="3":
         
 
 
-elif option == "4":
+elif option == "5":
     
 
     print("bye")

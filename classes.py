@@ -21,16 +21,18 @@ class Account:
         self.account_number = account_number
         self.account_name = account_name
         self._balance:int = 0
-        self.pin:int = pin
+        self.pin = pin
 
     
     def set_balance(self):
+
+        
 
         for key, value in account_data.items():
         
             if self.account_name == value["account_name"]:
 
-                self._balance = value["account_balance"]
+                value["account_balance"] = self._balance 
 
                 return self._balance
 
@@ -175,11 +177,12 @@ class Agent:
         self.contact = contact
 
 class Money_transfer:
-    def __init__(self,amount,receiver_number):
+    def __init__(self,amount,receiver_number,pin):
         #self.__transfer_id = ""
         self.receiver_number = receiver_number
         self.amount:int = amount
-        self.__status = "none"      #amount
+        self.__status = "none"
+        self.pin = pin      #amount
 
  
 

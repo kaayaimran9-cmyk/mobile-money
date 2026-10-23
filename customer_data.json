@@ -1,10 +1,18 @@
 {
     "Customer_ 001 ": {
-        "customer_id": "",
-        "first_name": "",
-        "last_name": "",
-        "date_of_birth": "",
-        "gender": "",
-        "address": ""
+        "customer_id": "001",
+        "first_name": "kaaya",
+        "last_name": "df",
+        "date_of_birth": "df",
+        "gender": "df",
+        "address": "fd"
+    },
+    "Customer_ 002 ": {
+        "customer_id": "002",
+        "first_name": "sdf",
+        "last_name": "sdf",
+        "date_of_birth": "sdf",
+        "gender": "sdf",
+        "address": "sdf"
     }
 }

@@ -1,6 +1,12 @@
-import datetime
 
 
-now = datetime.datetime.now()
 
-print(now)
+
+empty = {}
+
+yo = {}
+
+if empty == {}:
+    print("ya")
+else:
+    print("no")

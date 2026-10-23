@@ -1,1 +1,8 @@
-{}
+{
+    "Payment_ 001 ": {
+        "merchant_code": "86798",
+        "payment_method": "mobile money",
+        "amount": 647,
+        "payment_id": "Paid ugx 647"
+    }
+}

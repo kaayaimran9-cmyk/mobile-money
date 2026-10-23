@@ -1,1 +1,6 @@
-{}
+{
+    "Money_transfer_ 001 ": {
+        "amount": 234,
+        "receiver": "23432"
+    }
+}
